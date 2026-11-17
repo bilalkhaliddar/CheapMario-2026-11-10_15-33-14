@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class PLayer : MonoBehaviour
 {
+   
     public Rigidbody2D rb;
     public float horizontal;
     public float movespeed;
@@ -10,6 +11,7 @@ public class PLayer : MonoBehaviour
     public bool jump = false;
     public bool isjumping = false;
     Transform scale;
+    public Animator animator;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -23,6 +25,7 @@ public class PLayer : MonoBehaviour
         if (Input.GetKey(KeyCode.Space) && isjumping == false )
         {
             jump = true;
+            animator.SetTrigger("Jump");
         }
     }
     private void FixedUpdate()
@@ -57,6 +60,7 @@ public class PLayer : MonoBehaviour
     {
         if(collision.gameObject.tag == "Ground")
         {
+            animator.SetTrigger("Jump");
             isjumping = true;
         }
     }
